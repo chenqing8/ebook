@@ -5,31 +5,22 @@
 </template>
 
 <script>
-import EbookReader from '../../components/ebook/ebookReader'
+import EbookReader from "../../components/ebook/ebookReader";
 export default {
   name: "ebook",
   data() {
-    return {
-
-    };
+    return {};
   },
   components: {
     EbookReader
   },
-  computed: {
-
-  },
-  methods: {
-
-  },
-  mounted() {
-
-  }
+  computed: {},
+  methods: {},
+  mounted() {}
 };
 </script>
 
 <style lang="less" scoped>
-.ebook{
-
+.ebook {
 }
 </style>

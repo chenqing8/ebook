@@ -18,6 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
 <style lang="less">
 @import url("../src/assets/css/global.less");
 #app {
-  font-family: "Days One";
+  // font-family: "Days One";
 }
 </style>
