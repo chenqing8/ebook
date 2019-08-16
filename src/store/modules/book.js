@@ -7,6 +7,8 @@ const book = {
     defaultFontfamily: 'Days One', //字体
     currenBook: null,
     defaultThemes: 0, //主题编号
+    bookAvailable:false,//章节
+    cfi:null,//内容
   },
   mutations: {
     'FILE_NAME': (state, filename) => {
@@ -29,7 +31,10 @@ const book = {
     },
     'DEFAULT_THEMES': (state, defaultThemes) => {
       state.defaultThemes = defaultThemes;
-    }
+    },
+    'BOOKAVAILABLE': (state, bookAvailable) => {
+      state.bookAvailable = bookAvailable;
+    },
   },
 }
 export default book;

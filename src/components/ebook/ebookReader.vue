@@ -1,8 +1,8 @@
 <template>
   <div class="ebookReader">
-    <EbookMenu></EbookMenu>
+    <EbookMenu v-if="bookisready"></EbookMenu>
     <div id="read"></div>
-    <EbookTitle></EbookTitle>
+    <EbookTitle v-if="bookisready"></EbookTitle>
   </div>
 </template>
 
@@ -10,14 +10,17 @@
 import EPub from "epubjs";
 import EbookMenu from "./ebookMenu";
 import EbookTitle from "./ebookTitle";
-import eBookMinix from "../../unit/minix";/* mixins文件 */
+import eBookMinix from "../../unit/minix"; /* mixins文件 */
 import {
   getFontSize,
   setFontSize,
   setFontFamily,
   getFontFamily,
   getThemes,
-  setThemes
+  setThemes,
+  getCfi,
+  getProgressData,
+  setNavigation
 } from "../../unit/localStorage";
 import { themes } from "../../unit/book";
 
@@ -31,7 +34,8 @@ export default {
       touchStart: 0 /* 手指滑动的开始位置 */,
       touchTime: 0 /* 手指滑动的开始时间 */,
       rendition: {} /* 电子书渲染结果 */,
-      themes: themes(this) /* 获取主题的数据 */
+      themes: themes(this) /* 获取主题的数据 */,
+      bookisready: false
     };
   },
   components: {
@@ -46,6 +50,8 @@ export default {
      */
     initEpub() {
       const baseUrl = `${process.env.VUE_APP_RES_URL}/epub/${this.filename}.epub`;
+      // console.log(baseUrl);
+      // const baseUrl='http://192.168.50.11:81/epub/History/2016_Book_AHistoryOfForceFeeding.epub'
       this.book = new EPub(baseUrl);
       this.rendition = this.book.renderTo("read", {
         width: window.innerWidth,
@@ -57,6 +63,19 @@ export default {
         this.initFontSize();
         this.initFontFamily();
         this.initThemes();
+        this.initContent();
+        this.initNavigation();
+        this.book.ready
+          .then(() => {
+            return this.book.locations.generate(
+              750 *
+                (window.innerWidth / 375) *
+                (getFontSize(this.filename) / 16)
+            );
+          })
+          .then(locations => {
+            this.setBookAvailable(true);
+          });
       });
       /* 用手势实现电子书的翻页 */
       this.rendition.on("touchstart", event => {
@@ -179,11 +198,36 @@ export default {
       }
       // 首先判断是否有存储themes,有就直接用存储的值,没有就用第一个,并且将它存储
       this.book.rendition.themes.select(this.themes[this.defaultThemes].name);
+    },
+    /**加载书籍目录
+     * @name: initNavigation
+     * @param {null}
+     * @return:
+     */
+    initNavigation() {
+      let navigations = this.currenBook.navigation.toc;
+      setNavigation(this.filename,navigations);
+    },
+    /**显示章节内容
+     * @name: initContent
+     * @param {type}
+     * @return:
+     */
+    initContent() {
+      let cfi = getCfi(this.filename);
+      if (cfi) {
+        this.book.rendition.display(cfi);
+      }
     }
   },
   mounted() {
+    if (JSON.stringify(this.$route.params) == "{}") {
+      /* 判断url是否有参数传递 */
+      return false;
+    }
     let fileName = this.$route.params.filename.replace("|", "/");
     this.setFileName(fileName).then(res => {
+      this.bookisready = true;
       this.initEpub();
     });
   }

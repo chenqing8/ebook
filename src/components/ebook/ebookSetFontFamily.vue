@@ -1,6 +1,6 @@
 <template>
   <div class="ebookSetFontFamily">
-    <transition name="fade">
+    <SlideUp>
       <div class="warper" :style="themesStyle" v-if="showMenu&&menuItem==4">
         <div class="title">
           <span class="icon-back icon" @click="goSetFontSize"></span>
@@ -19,7 +19,7 @@
           </div>
         </div>
       </div>
-    </transition>
+    </SlideUp>
   </div>
 </template>
 
@@ -59,17 +59,7 @@ export default {
   bottom: 1.333333rem /* 100/75 */;
   z-index: -1;
   font-size: 0.32rem /* 24/75 */;
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: all 0.25s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    transform: translateY(2.666667rem /* 200/75 */);
-  }
-  .fade-enter-to, .fade-leave/* .fade-leave-active below version 2.1.8 */ {
-    transform: translateY(0);
-  }
-
+ 
   .warper {
     height: 3.33333333rem /* 250/75 */;
     box-shadow: 0px -1px 5px #888;

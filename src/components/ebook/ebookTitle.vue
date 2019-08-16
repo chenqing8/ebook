@@ -1,6 +1,6 @@
 <template>
   <div class="ebookTitle">
-    <transition name="fade">
+    <SlideDown>
       <div class="ebook" :style="themesStyle" v-show="showMenu">
         <div class="icon-back"></div>
         <ul>
@@ -9,7 +9,7 @@
           <li class="icon-A"></li>
         </ul>
       </div>
-    </transition>
+    </SlideDown>
   </div>
 </template>
 
@@ -37,16 +37,6 @@ export default {
   right: 0;
   left: 0;
   z-index: 10;
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: all 0.5s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    transform: translateY(-2.666667rem /* 200/75 */);
-  }
-  .fade-enter-to, .fade-leave/* .fade-leave-active below version 2.1.8 */ {
-    transform: translateY(0);
-  }
   .ebook {
     display: flex;
     align-items: center;

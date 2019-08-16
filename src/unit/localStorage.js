@@ -45,6 +45,30 @@ export function getFontFamily(filename) {
 export function setThemes(filename, themename) {
   return setBookObject(filename, 'themes', themename)
 }
-export function getThemes(filename){
-  return getBookObject(filename,'themes')
+export function getThemes(filename) {
+  return getBookObject(filename, 'themes')
+}
+export function setProgressData(filename, progress) {
+  return setBookObject(filename, 'progress', progress)
+}
+export function getProgressData(filename) {
+  return getBookObject(filename, 'progress')
+}
+export function setSection(filename, Section) {
+  return setBookObject(filename, 'Section', Section)
+}
+export function getSection(filename) {
+  return getBookObject(filename, 'Section')
+}
+export function setCfi(filename, cfi) {
+  return setBookObject(filename, 'cfi', cfi)
+}
+export function getCfi(filename) {
+  return getBookObject(filename, 'cfi')
+}
+export function setNavigation(filename, navigation) {
+  return setBookObject(filename, 'navigation', navigation)
+}
+export function getNavigation(filename) {
+  return getBookObject(filename, 'navigation')
 }

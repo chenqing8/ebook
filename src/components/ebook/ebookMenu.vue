@@ -1,11 +1,11 @@
 <template>
   <div class="ebookMenu">
-    <transition name="fade">
+    <SlideUp>
       <div
         class="ebook"
         :style="themesStyle"
         v-show="showMenu"
-        :class="{'hideBoxShadow':menuItem>=0}"
+        :class="{'hideBoxShadow':menuItem>0}"
       >
         <ul>
           <li class="icon-menu" @click="chooseItem(0)"></li>
@@ -17,8 +17,9 @@
         <EbookSetFontFamily />
         <EbookSetThemes />
         <EbookProcess />
+        <EbookNav />
       </div>
-    </transition>
+    </SlideUp>
   </div>
 </template>
 
@@ -28,6 +29,7 @@ import EbookSetFont from "../../components/ebook/ebookSetFont";
 import EbookSetFontFamily from "../../components/ebook/ebookSetFontFamily";
 import EbookSetThemes from "../../components/ebook/ebookSetThemes";
 import EbookProcess from "../../components/ebook/ebookProcess";
+import EbookNav from "../../components/ebook/ebookNav";
 
 export default {
   name: "ebookMenu",
@@ -39,7 +41,8 @@ export default {
     EbookSetFont,
     EbookSetFontFamily,
     EbookSetThemes,
-    EbookProcess
+    EbookProcess,
+    EbookNav
   },
   computed: {},
   methods: {
@@ -64,16 +67,6 @@ export default {
   right: 0;
   left: 0;
   z-index: 10;
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: all 0.25s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    transform: translateY(2.666667rem /* 200/75 */);
-  }
-  .fade-enter-to, .fade-leave/* .fade-leave-active below version 2.1.8 */ {
-    transform: translateY(0);
-  }
   .ebook {
     height: 1.333333rem /* 100/75 */;
     font-size: 0.533333rem /* 40/75 */;

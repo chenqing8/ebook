@@ -20,5 +20,8 @@ const actions={
     setDefaultThemes:({commit,state},newDefaultThemes)=>{
         return commit('DEFAULT_THEMES',newDefaultThemes)
     },
+    setBookAvailable:({commit,state},newBookAvailable)=>{
+        return commit('BOOKAVAILABLE',newBookAvailable)
+    },
 }
 export default actions;

@@ -5,6 +5,7 @@ const book={
     defaultFontsize:state=>state.book.defaultFontSize,
     defaultFontfamily:state=>state.book.defaultFontfamily,
     defaultThemes:state=>state.book.defaultThemes,
-    currenBook:state=>state.book.currenBook
+    currenBook:state=>state.book.currenBook,
+    bookAvailable:state=>state.book.bookAvailable,
 }
 export default book;

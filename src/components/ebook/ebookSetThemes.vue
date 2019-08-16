@@ -1,6 +1,6 @@
 <template>
   <div class="ebookSetThemes">
-    <transition name="fade">
+    <SlideUp>
       <div class="themesWarper" :style="themesStyle" v-if="showMenu&&menuItem==2">
         <div class="ThemesColor">
           <p
@@ -16,7 +16,7 @@
           <p class="title" v-for="(item,index) in themes" :key="index">{{item.alias}}</p>
         </div>
       </div>
-    </transition>
+    </SlideUp>
   </div>
 </template>
 
@@ -60,18 +60,6 @@ export default {
   right: 0;
   left: 0;
   z-index: -1;
-  .fade-enter,
-  .fade-leave-to {
-    transform: translateY(1.33333333rem /* 100/75 */);
-  }
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: all 0.25s;
-  }
-  .fade-enter-to,
-  .fade-leave {
-    transform: translateY(0);
-  }
   .themesWarper {
     padding: 0.26666667rem /* 20/75 */ 0.53333333rem /* 40/75 */;
     box-shadow: 0 -1px 5px #888;
