@@ -1,0 +1,28 @@
+{
+  "files.autoSave": "afterDelay",
+    "eslint.options": { "configFile": "F:/1/work/enovate-h5-front/.eslintrc.js"},
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue-html",
+        "html",
+        "vue",
+        {
+          "language": "vue",
+          "autoFix": true
+      }
+    ],
+    "json.format.enable": true,
+    "javascript.preferences.quoteStyle": "single",
+    "editor.fontSize": 14,
+    "window.zoomLevel": 0.3,
+    "vetur.format.defaultFormatter.js": "vscode-typescript",
+    "html.format.endWithNewline": true,
+    "explorer.confirmDelete": false,
+    "prettier.semi": true,
+    "prettier.singleQuote": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "eslint.autoFixOnSave": true,
+    "editor.tabSize": 2,
+    "eslint.alwaysShowStatus": true
+  }
